@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kotak Aspirasi Siswa</title>
+  <meta name="description" content="Sampaikan saran, keluhan, dan ide untuk sekolahmu. Setiap aspirasi mendapat kode untuk dipantau sampai ada tanggapan.">
+  <meta name="theme-color" content="#1F5FBF">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="watermark" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="brand" href="#atas" aria-label="Kotak Aspirasi Siswa, kembali ke atas">
+      <img src="assets/logo.png" alt="" width="36" height="36">
+      <span data-sekolah-singkat>Nama Sekolah</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a href="#transparansi">Transparansi</a>
+      <a href="#lacak">Lacak aspirasi</a>
+      <a class="btn btn-small" href="#kirim">Kirim aspirasi</a>
+    </nav>
+  </header>
+
+  <main id="atas">
+    <section class="hero">
+      <h1>Punya ide atau keluhan untuk sekolah? Sampaikan di sini.</h1>
+      <p class="lead">Tulis aspirasimu, simpan kodenya, lalu pantau tanggapan dari sekolah. Nama boleh disamarkan.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#kirim">Kirim aspirasi</a>
+        <a class="btn btn-ghost" href="#lacak">Lacak aspirasi</a>
+      </div>
+      <p class="hero-count" id="hero-count" aria-live="polite"></p>
+    </section>
+
+    <section class="split" id="kirim">
+      <div class="card" id="kartu-form">
+        <h2>Kirim aspirasi</h2>
+        <form id="form-aspirasi" novalidate>
+          <div class="field">
+            <label for="kategori">Kategori</label>
+            <select id="kategori" name="kategori" required>
+              <option value="">Pilih kategori</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="judul">Judul</label>
+            <input id="judul" name="judul" type="text" maxlength="100" placeholder="Contoh: Kipas angin kelas XI-2 rusak" required>
+          </div>
+          <div class="field">
+            <label for="isi">Isi aspirasi</label>
+            <textarea id="isi" name="isi" rows="6" maxlength="2000" placeholder="Ceritakan apa yang terjadi, di mana, dan usulanmu." required></textarea>
+            <p class="hint"><span id="isi-hitung">0</span> dari 2000 karakter</p>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="nama">Nama <span class="opsional">(boleh dikosongkan)</span></label>
+              <input id="nama" name="nama" type="text" maxlength="60" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="kelas">Kelas <span class="opsional">(boleh dikosongkan)</span></label>
+              <input id="kelas" name="kelas" type="text" maxlength="20" placeholder="XI-2">
+            </div>
+          </div>
+          <label class="check" for="anonim">
+            <input id="anonim" name="anonim" type="checkbox">
+            <span>Kirim sebagai anonim. Namamu tidak disimpan, bahkan admin tidak bisa melihatnya.</span>
+          </label>
+          <div class="jebakan" aria-hidden="true">
+            <label for="website">Jangan diisi</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="error" id="form-error" role="alert"></p>
+          <button class="btn btn-block" type="submit" id="tombol-kirim">Kirim aspirasi</button>
+        </form>
+      </div>
+
+      <div class="card sukses" id="kartu-sukses" hidden>
+        <img src="assets/logo.png" alt="" width="56" height="56">
+        <h2>Aspirasi terkirim</h2>
+        <p>Simpan kode ini. Kamu memerlukannya untuk melihat status dan tanggapan.</p>
+        <p class="kode" id="kode-hasil" tabindex="-1"></p>
+        <div class="hero-actions">
+          <button class="btn" type="button" id="salin-kode">Salin kode</button>
+          <button class="btn btn-ghost" type="button" id="kirim-lagi">Kirim aspirasi lain</button>
+        </div>
+        <p class="hint" id="salin-info" role="status"></p>
+      </div>
+
+      <aside class="card" id="lacak" aria-labelledby="judul-lacak">
+        <h2 id="judul-lacak">Lacak aspirasi</h2>
+        <form id="form-lacak" novalidate>
+          <div class="field">
+            <label for="kode">Kode aspirasi</label>
+            <input id="kode" name="kode" type="text" placeholder="ASP-K7M2QX" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false">
+          </div>
+          <p class="error" id="lacak-error" role="alert"></p>
+          <button class="btn btn-block btn-outline" type="submit">Cek status</button>
+        </form>
+        <div class="hasil-lacak" id="hasil-lacak" aria-live="polite"></div>
+      </aside>
+    </section>
+
+    <section class="transparansi" id="transparansi" aria-labelledby="judul-transparansi">
+      <div class="section-head">
+        <div>
+          <h2 id="judul-transparansi">Transparansi</h2>
+          <p class="lead-small">Semua aspirasi yang masuk dihitung di sini. Aspirasi yang sudah diperiksa admin ditampilkan lengkap dengan tanggapannya.</p>
+        </div>
+        <div class="field filter">
+          <label for="filter-kategori">Kategori</label>
+          <select id="filter-kategori">
+            <option value="">Semua kategori</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="ringkasan" id="ringkasan" hidden>
+        <div class="bar" id="bar" role="img" aria-label="Perbandingan status aspirasi"></div>
+        <ul class="legenda" id="legenda"></ul>
+      </div>
+
+      <ul class="daftar" id="daftar" aria-live="polite"></ul>
+      <p class="kosong" id="kosong" hidden>Belum ada aspirasi yang dipublikasikan. Kirim yang pertama.</p>
+      <div class="center">
+        <button class="btn btn-outline" type="button" id="muat-lagi" hidden>Muat lebih banyak</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="assets/logo.png" alt="" width="28" height="28">
+    <p><span data-sekolah>Nama Sekolah</span></p>
+    <a href="admin.html">Masuk admin</a>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

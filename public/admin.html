@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel admin - Kotak Aspirasi Siswa</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="watermark" aria-hidden="true"></div>
+
+  <main class="admin-wrap">
+    <section class="card login" id="login">
+      <img src="assets/logo.png" alt="" width="48" height="48">
+      <h2>Masuk admin</h2>
+      <form id="form-login">
+        <div class="field">
+          <label for="password">Kata sandi</label>
+          <input id="password" type="password" autocomplete="current-password" required>
+        </div>
+        <p class="error" id="login-error" role="alert"></p>
+        <button class="btn btn-block" type="submit">Masuk</button>
+      </form>
+      <p class="hint"><a href="index.html">Kembali ke website</a></p>
+    </section>
+
+    <section id="panel" hidden>
+      <div class="admin-head">
+        <h1>Panel admin</h1>
+        <div class="aksi toolbar-aksi">
+          <a class="btn btn-ghost btn-small" href="index.html">Lihat website</a>
+          <button class="btn btn-outline btn-small" type="button" id="ekspor">Unduh CSV</button>
+          <button class="btn btn-ghost btn-small" type="button" id="keluar">Keluar</button>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="field">
+          <label for="f-status">Status</label>
+          <select id="f-status">
+            <option value="">Semua status</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-cari">Cari</label>
+          <input id="f-cari" type="search" placeholder="Judul, isi, atau kode">
+        </div>
+      </div>
+      <p class="hint" id="jumlah" aria-live="polite"></p>
+      <div id="daftar-admin"></div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
