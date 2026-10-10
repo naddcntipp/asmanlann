@@ -1,0 +1,13 @@
+{
+  "name": "aspirasi-siswa",
+  "version": "1.0.0",
+  "description": "Kotak aspirasi digital siswa: website + backend tanpa dependensi.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
